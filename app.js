@@ -1,5 +1,5 @@
 const express = require('express');
-const sqlite3 = require('better-sqlite3')('mydatabase.db'); // Directly use the filename
+const db = require('better-sqlite3')('mydatabase.db'); // Directly use the filename
 
 const app = express();
 const port = process.env.PORT || 3000;
