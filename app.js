@@ -1,14 +1,13 @@
-// app.js
 const express = require('express');
-const sqlite3 = require('better-sqlite3');
-const path = require('path');
+const sqlite3 = require('better-sqlite3')('mydatabase.db'); // Directly use the filename
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Database initialization (runs on container startup)
-const dbPath = path.resolve(__dirname, 'mydatabase.db'); // Path within the container
-const db = new sqlite3(dbPath);
+// No need for path.resolve if you're using just the filename
+// better-sqlite3 will create the database file in the current working directory
+// which will be /app inside the Docker container.
 
 // Create table if it doesn't exist.  Important for first run in Docker
 db.exec(`
